@@ -11,7 +11,7 @@ getUsernameBtn.addEventListener("click", () => {
   if (username !== null) {
     username = username.trim();
     if (username) {
-      displayUsernameField.value = username;
+      displayUsernameField.value = `Hello, ${username}`;
       displayUsernameField.classList.remove("text-bg-warning");
     } else {
       displayUsernameField.value = "The username must not be empty";
@@ -50,7 +50,7 @@ const getSquareSideLengthBtn = document.querySelector(".get-length-btn");
 const displayPerimeterContainer = document.querySelector(".square-container");
 
 getSquareSideLengthBtn.addEventListener("click", () => {
-  let sideLength = prompt("Enter the length of the side:", 4);
+  const sideLength = prompt("Enter the length of the side:", 4);
   if (sideLength !== null) {
     if (isValidNumber(sideLength)) {
       displayPerimeterContainer.innerHTML = `Perimeter: ${
@@ -68,7 +68,7 @@ const getCircleRadiusBtn = document.querySelector(".get-radius-btn");
 const displayAreaContainer = document.querySelector(".circle-container");
 
 getCircleRadiusBtn.addEventListener("click", () => {
-  let radius = prompt("Enter the radius:", 4);
+  const radius = prompt("Enter the radius:", 4);
   if (radius !== null) {
     if (isValidNumber(radius)) {
       displayAreaContainer.innerHTML = `Area: ${Math.round(
@@ -86,8 +86,8 @@ const getSpeedCalcDataBtn = document.querySelector(".get-speed-calc-data-btn");
 const displaySpeedLabel = document.querySelector(".speed-label");
 
 getSpeedCalcDataBtn.addEventListener("click", () => {
-  let distance = prompt("Enter the distance (km):", 4);
-  let time = prompt("Enter the time (hours):", 2);
+  const distance = prompt("Enter the distance (km):", 4);
+  const time = prompt("Enter the time (hours):", 2);
   if (distance !== null && time !== null) {
     if (isValidNumber(distance) && isValidNumber(time)) {
       displaySpeedLabel.innerHTML = `Speed: ${Math.round(distance / time)} KPH`;
@@ -99,14 +99,14 @@ getSpeedCalcDataBtn.addEventListener("click", () => {
   }
 });
 
-//SPEED
+//USER DATA
 const getUserDataBtn = document.querySelector(".get-user-data-btn");
 const userInfoLabel = document.querySelector(".console-userinfo-label");
 
 getUserDataBtn.addEventListener("click", () => {
-  let name = prompt("Enter your name:", "John Smith");
-  let age = prompt("Enter your age:", 25);
-  let country = prompt("Enter your country of birth:", "Ukraine");
+  const name = prompt("Enter your name:", "John Smith");
+  const age = prompt("Enter your age:", 25);
+  const country = prompt("Enter your country of birth:", "Ukraine");
   if (name !== null && age !== null && country !== null) {
     if (isValidNumber(age) && name.trim() && country.trim()) {
       console.log(
@@ -122,6 +122,77 @@ getUserDataBtn.addEventListener("click", () => {
       userInfoLabel.innerHTML = "Please, enter valid data";
       userInfoLabel.classList.add("text-danger");
       userInfoLabel.classList.remove("text-success");
+    }
+  }
+});
+
+//QUESTIONS
+const questions = [
+  "What's your name?",
+  "What's your surname?",
+  "Where are you from?",
+  "How old are you?",
+  "What do you do for a living?",
+  "What's your favourite movie?",
+  "What's your favourite color?",
+  "Which country would you like visit?",
+  "Sweets: yes or no?",
+  "Sports: yes or no?",
+];
+
+let answers = [];
+
+const questionsBtn = document.querySelector(".questions-btn");
+const showAnswersBtn = document.querySelector(".show-answers-btn");
+
+questionsBtn.addEventListener("click", () => {
+  let answer;
+  questions.forEach((question) => {
+    answer = prompt(question);
+    answers.push(answer);
+  });
+  if (answers.length) showAnswersBtn.removeAttribute("disabled");
+});
+
+showAnswersBtn.addEventListener("click", () => {
+  alert(
+    `Name: ${answers[0]} 
+    \nSurname: ${answers[1]} 
+    \nCountry: ${answers[2]} 
+    \nAge: ${answers[3]} 
+    \nJob: ${answers[4]} 
+    \nFavourite movie: ${answers[5]} 
+    \nFavourite color: ${answers[6]} 
+    \n${answers[0]} would like to visit ${answers[7]} 
+    \n${answers[0]} said ${answers[8]} to sweets :) 
+    \n${answers[0]} said ${answers[9]} to sports :)`
+  );
+});
+
+// questions.forEach((question) => {});
+
+//AGE-2
+const getBirthYearBtn2 = document.querySelector(".get-birth-year-btn2");
+const ageInfoLabel = document.querySelector(".console-age-label");
+
+getBirthYearBtn2.addEventListener("click", () => {
+  let year = prompt("Enter your year of birth:", 1990);
+
+  if (year !== null) {
+    year = Math.trunc(Number(year));
+    if (isValidNumber(year) && year >= 1930 && year < 2025) {
+      console.log(
+        `Age in 2025: ${2025 - year} \nAge in 2029: ${
+          2029 - year
+        } \nAge in 2050: ${2050 - year}`
+      );
+      ageInfoLabel.innerHTML = "Open the console!";
+      ageInfoLabel.classList.remove("text-danger");
+      ageInfoLabel.classList.add("text-success");
+    } else {
+      ageInfoLabel.innerHTML = "Please, enter the valid year";
+      ageInfoLabel.classList.add("text-danger");
+      ageInfoLabel.classList.remove("text-success");
     }
   }
 });
