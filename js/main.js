@@ -90,7 +90,9 @@ getSpeedCalcDataBtn.addEventListener("click", () => {
   const time = prompt("Enter the time (hours):", 2);
   if (distance !== null && time !== null) {
     if (isValidNumber(distance) && isValidNumber(time)) {
-      displaySpeedLabel.innerHTML = `Speed: ${Math.round(distance / time)} KPH`;
+      displaySpeedLabel.innerHTML = `Speed: ${
+        Math.round((distance / time) * 100) / 100
+      } KPH`;
       displaySpeedLabel.classList.remove("text-danger");
     } else {
       displaySpeedLabel.innerHTML = "Please, enter valid distance and time";
@@ -168,8 +170,6 @@ showAnswersBtn.addEventListener("click", () => {
     \n${answers[0]} said ${answers[9]} to sports :)`
   );
 });
-
-// questions.forEach((question) => {});
 
 //AGE-2
 const getBirthYearBtn2 = document.querySelector(".get-birth-year-btn2");
