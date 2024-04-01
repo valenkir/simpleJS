@@ -4,23 +4,4 @@ body {
 
 nav {
   background-color: #7373cb;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-  border: 1px solid white;
-  padding: 10px;
-}
-
-.square-container {
-  width: 150px;
-  height: 150px;
-  background-color: #7373cb;
-}
-
-.circle-container {
-  width: 150px;
-  height: 150px;
-  background-color: #c473cb;
 }/*# sourceMappingURL=main.css.map */
