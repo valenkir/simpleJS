@@ -119,7 +119,7 @@ getAgeBtn.addEventListener("click", () => {
     const age = new Date().getFullYear() - birthYear;
     if (age >= 0) {
       calcAgeField.value = `The person is ${
-        age >= 18 ? "older than 18: " + age : "under 18 years old: " + age
+        age >= 18 ? "You are over 18: " + age : "You are underaged: " + age
       }`;
     } else {
       calcAgeField.value = "The date should be a past date";

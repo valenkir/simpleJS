@@ -10,7 +10,7 @@ function isValidString(promptString) {
   return promptString && promptString.trim();
 }
 
-//made it not only for 3-char strings
+//for any number of chars in a string (hopefully)
 function findIdenticalChars(str) {
   let identicalChars = [];
   for (let i = 0; i < str.length; i++) {
@@ -34,6 +34,9 @@ const digitsField = document.querySelector(".digits-field");
 digitsBtn.addEventListener("click", () => {
   let numberToCheck = prompt("Enter a 3-digit number:");
   if (isValidNumber(numberToCheck) && !Math.trunc(numberToCheck / 1000)) {
+    if (numberToCheck % 1 !== 0) {
+      numberToCheck = Math.trunc(Number(numberToCheck));
+    }
     numberToCheck = Math.abs(numberToCheck) + "";
 
     //remove the duplicated values
@@ -49,3 +52,31 @@ digitsBtn.addEventListener("click", () => {
     digitsField.value = "Enter a 3-digit number";
   }
 });
+
+//PALINDROME
+const palindromeBtn = document.querySelector(".check-palindrome-btn");
+const palindromeField = document.querySelector(".palindrome-field");
+
+palindromeBtn.addEventListener("click", () => {
+  let numberToCheck = prompt("Enter a 5-digit number:");
+
+  //division by 100000 doesn't seem like a proper way to do it
+  if (isValidNumber(numberToCheck) && !Math.trunc(numberToCheck / 100000)) {
+    numberToCheck = Math.trunc(Number(numberToCheck));
+    numberToCheck = Math.abs(numberToCheck) + "";
+
+    //TODO: write a function for any number of digits
+    if (
+      numberToCheck.charAt(0) === numberToCheck.charAt(4) &&
+      numberToCheck.charAt(1) === numberToCheck.charAt(3)
+    ) {
+      palindromeField.value = "The number is a palindrome";
+    } else {
+      palindromeField.value = "The number is not a palindrome";
+    }
+  } else {
+    palindromeField.value = "Enter a 5-digit number";
+  }
+});
+
+//
