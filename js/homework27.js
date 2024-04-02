@@ -153,7 +153,7 @@ getRangeNumberBtn.addEventListener("click", () => {
   } else {
     errorLabel.innerHTML = "Enter a valid number";
     errorLabel.classList.add("text-danger");
-    isNumberField.value = "";
+    isNumberField.value = typeof num;
     isInRangeField.value = "";
   }
 });
