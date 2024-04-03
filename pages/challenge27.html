@@ -19,7 +19,25 @@
     <header class="mb-5">
       <nav class="p-4">
         <ul class="d-flex flex-wrap w-100 gap-5">
-          <li><a href="#tim-section" class="fs-5">Tim</a></li>
+          <li>
+            <a href="#identical-digits-section" class="fs-5"
+              >Identical digits</a
+            >
+          </li>
+          <li>
+            <a href="#palindrome-section" class="fs-5">Palindrome</a>
+          </li>
+          <li>
+            <a href="#converter-section" class="fs-5">Currency Converter</a>
+          </li>
+          <li>
+            <a href="#circle-in-square-section" class="fs-5"
+              >Circle In Square</a
+            >
+          </li>
+          <li>
+            <a href="#email-validation-section" class="fs-5">Email</a>
+          </li>
           <li><a href="./homework27.html" class="fs-5">Homework 27</a></li>
           <li>
             <a href="../index.html" class="fs-5">Home</a>
@@ -30,10 +48,10 @@
     <main class="ps-4 pe-4">
       <h2 class="h2">Challenges 27</h2>
       <section
-        id="identical-numbers-section"
+        id="identical-digits-section"
         class="d-flex flex-column gap-2 mt-5 mb-5"
       >
-        <h3 class="h4">Digits</h3>
+        <h3 class="h4">Identical digits</h3>
         <button type="button" class="btn btn-primary w-25 check-digits-btn">
           Get A Number
         </button>
@@ -61,6 +79,118 @@
           class="w-25 palindrome-field form-control fs-5"
           disabled
         />
+      </section>
+      <hr />
+      <section
+        id="converter-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Currency Converter</h3>
+        <form
+          action=""
+          method="POST"
+          class="d-flex flex-column gap-2 converter-form"
+        >
+          <label for="currency-amount-field" class="fs-5"
+            >Enter the amount (USD):</label
+          >
+          <input
+            id="currency-amount-field"
+            name="amount-field"
+            type="text"
+            class="w-25 currency-amount-field form-control fs-5"
+          />
+          <label for="currency-list" class="fs-5">Choose currency:</label>
+          <select
+            name="currency"
+            id="currency-list"
+            class="form-select w-25 fs-5 choose-currency-dropdown"
+          >
+            <option value="eur">EUR</option>
+            <option value="uah">UAH</option>
+            <option value="bgn">BGN</option>
+          </select>
+          <label for="converter-result-field" class="fs-5">Result:</label>
+          <input
+            id="converter-result-field"
+            type="text"
+            class="w-25 converter-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 converter-btn">
+            Submit
+          </button>
+        </form>
+        <label class="fs-5 converter-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section
+        id="circle-in-square-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Circle inscribed in square</h3>
+        <form
+          action=""
+          method="POST"
+          class="d-flex flex-column gap-2 inscribed-circle-form"
+        >
+          <label for="circumference-field" class="fs-5"
+            >Enter circumference:</label
+          >
+          <input
+            id="circumference-field"
+            name="circumference-field"
+            type="text"
+            class="w-25 circumference-field form-control fs-5"
+          />
+          <label for="perimeter-field" class="fs-5"
+            >Enter perimeter of a square:</label
+          >
+          <input
+            id="perimeter-field"
+            name="perimeter-field"
+            type="text"
+            class="w-25 perimeter-field form-control fs-5"
+          />
+          <label for="inscribed-circe-result-field" class="fs-5">Result:</label>
+          <input
+            id="inscribed-circe-result-field"
+            class="w-25 inscribed-circe-result-field form-control fs-5"
+            disabled
+          />
+          <button
+            type="button"
+            class="btn btn-primary w-25 check-inscribed-circle-btn"
+          >
+            Submit
+          </button>
+        </form>
+        <label class="fs-5 inscribed-circle-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section
+        id="email-validation-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Email validation</h3>
+        <form
+          action=""
+          method="POST"
+          class="d-flex flex-column gap-2 inscribed-circle-form"
+        >
+          <label for="email-field" class="fs-5">Enter email:</label>
+          <!-- the type is "text" on purpose -->
+          <input
+            id="email-field"
+            name="email-field"
+            type="text"
+            class="w-25 email-field form-control fs-5"
+          />
+          <button type="button" class="btn btn-primary w-25 email-submit-btn">
+            Submit
+          </button>
+        </form>
+        <label class="fs-5 email-error-label text-danger"></label>
       </section>
       <hr />
     </main>
