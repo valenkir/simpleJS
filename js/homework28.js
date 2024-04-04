@@ -1,5 +1,5 @@
 function isValidNumber(num) {
-  return !isNaN(num) && num !== null && num.trim().length;
+  return !isNaN(num) && num !== null && num.trim().length > 0;
 }
 
 function isEmptyString(promptString) {
