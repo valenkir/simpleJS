@@ -2,6 +2,10 @@ function isValidNumber(num) {
   return !isNaN(num) && num !== null && num.trim().length;
 }
 
+function isEmptyString(promptString) {
+  return promptString.length > 0 && promptString.trim();
+}
+
 //SUM NUMBERS
 const numberField = document.querySelector(".sum-field");
 const sumResultField = document.querySelector(".sum-result-field");
@@ -21,6 +25,47 @@ sumBtn.addEventListener("click", () => {
   } else {
     sumErrorLabel.innerHTML = "Enter a valid number";
     sumResultField.value = "";
+  }
+});
+
+//GCD
+const firstField = document.querySelector(".num-field1");
+const secondField = document.querySelector(".num-field2");
+const gcdField = document.querySelector(".gcd-field");
+const gcdBtn = document.querySelector(".gcd-btn");
+const gcdErrorLabel = document.querySelector(".gcd-error-label");
+
+function getGCD(greaterNum, smallerNum) {
+  if (greaterNum % smallerNum === 0) {
+    return smallerNum;
+  } else {
+    for (i = Math.floor(smallerNum / 2); i >= 1; i--) {
+      if (smallerNum % i === 0 && greaterNum % i === 0) return i;
+    }
+  }
+}
+
+gcdBtn.addEventListener("click", () => {
+  let firstNum = firstField.value;
+  let secondNum = secondField.value;
+  let gcd;
+  if (isValidNumber(firstNum) && isValidNumber(secondNum)) {
+    gcdErrorLabel.innerHTML = "";
+    firstNum = Number(firstNum);
+    secondNum = Number(secondNum);
+
+    if (firstNum === secondNum) {
+      gcdField.value = secondNum;
+    } else {
+      gcd =
+        firstNum > secondNum
+          ? getGCD(firstNum, secondNum)
+          : getGCD(secondNum, firstNum);
+      gcdField.value = gcd;
+    }
+  } else {
+    gcdErrorLabel.innerHTML = "Enter a valid number";
+    gcdField.value = "";
   }
 });
 
@@ -78,7 +123,7 @@ calcDigitsBtn.addEventListener("click", () => {
   }
 });
 
-//Statistics
+//STATISTICS
 const statResultField = document.querySelector(".statistics-result-field");
 const statBtn = document.querySelector(".statistics-btn");
 const statErrorLabel = document.querySelector(".statistics-error-label");
@@ -92,6 +137,7 @@ statBtn.addEventListener("click", () => {
     negative: 0,
     zero: 0,
   };
+
   let promptNumbers = [];
   for (let i = 0; i < 10; i++) {
     getNum = prompt("Enter a number");
@@ -113,9 +159,7 @@ statBtn.addEventListener("click", () => {
     } else if (number < 0) {
       statistics.negative++;
     }
-  });
 
-  promptNumbers.forEach((number) => {
     if (Math.abs(number % 2) === 0 && number !== 0) {
       statistics.even++;
     } else if (number % 2 !== 0 && number !== 0) {
@@ -124,4 +168,61 @@ statBtn.addEventListener("click", () => {
   });
 
   statResultField.value = `Odd: ${statistics.odd} \nEven: ${statistics.even} \nPositive: ${statistics.positive} \nNegative: ${statistics.negative} \nZero: ${statistics.zero}`;
+});
+
+//FAVOURITE FRUIT
+const answerField = document.querySelector(".answer-field");
+const fruitResultField = document.querySelector(".fruit-result-field");
+const fruitBtn = document.querySelector(".fruit-btn");
+const fruitErrorLabel = document.querySelector(".fruit-error-label");
+
+fruitBtn.addEventListener("click", () => {
+  const fruit = answerField.value;
+  if (isEmptyString(fruit)) {
+    fruitErrorLabel.innerHTML = "";
+    switch (fruit.toLowerCase()) {
+      case "peach":
+      case "apple":
+      case "banana":
+        fruitResultField.value = "It's my favourite too!";
+        break;
+      case "pear":
+      case "grapefruit":
+        fruitResultField.value = "I don't really like it. In fact, I hate it.";
+        break;
+      default:
+        fruitResultField.value =
+          "I haven't tried this one. Are you sure such fruit exists? :D";
+    }
+  } else {
+    fruitErrorLabel.innerHTML = "Enter a valid fruit name";
+  }
+});
+
+//CHECK NUMBER
+const checkNumField = document.querySelector(".check-num-field");
+const checkNumResultField = document.querySelector(".check-num-result-field");
+const checkNumBtn = document.querySelector(".check-num-btn");
+const checkNumErrorLabel = document.querySelector(".check-num-error-label");
+
+checkNumBtn.addEventListener("click", () => {
+  let numToCheck = checkNumField.value;
+  if (isValidNumber(numToCheck)) {
+    checkNumErrorLabel.innerHTML = "";
+
+    switch (true) {
+      case Number(numToCheck) === 0:
+        checkNumResultField.value = "This is 0";
+        break;
+      case Number(numToCheck) % 2 === 0:
+        checkNumResultField.value = "This number is even";
+        break;
+      case Number(numToCheck) % 2 !== 0:
+        checkNumResultField.value = "This number is odd";
+        break;
+    }
+  } else {
+    checkNumErrorLabel.innerHTML = "Enter valid number";
+    checkNumResultField.value = "";
+  }
 });

@@ -23,6 +23,12 @@
           <li><a href="#gcd-section" class="fs-5">GCD</a></li>
           <li><a href="#all-divisors-section" class="fs-5">All Divisors</a></li>
           <li>
+            <a href="#num-of-digits-section" class="fs-5">Number Of Digits</a>
+          </li>
+          <li><a href="#statistics-section" class="fs-5">Statistics</a></li>
+          <li><a href="#fruit-section" class="fs-5">Fruit</a></li>
+          <li><a href="#check-num-section" class="fs-5">Check Number</a></li>
+          <li>
             <a href="../index.html" class="fs-5">Home</a>
           </li>
         </ul>
@@ -54,6 +60,37 @@
         <label class="fs-5 sum-error-label text-danger"></label>
       </section>
       <hr />
+      <section id="gcd-section" class="d-flex flex-column gap-2 mt-5 mb-5">
+        <h3 class="h4">Greatest common divisor</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="num-field1" class="fs-5">Enter the 1st number:</label>
+          <input
+            id="num-field1"
+            name="num-field1"
+            type="text"
+            class="w-25 num-field1 form-control fs-5"
+          />
+          <label for="num-field2" class="fs-5">Enter the 2nd number:</label>
+          <input
+            id="num-field2"
+            name="num-field2"
+            type="text"
+            class="w-25 num-field2 form-control fs-5"
+          />
+          <label for="gcd-field" class="fs-5">GCD:</label>
+          <input
+            id="gcd-field"
+            type="text"
+            class="w-25 gcd-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 gcd-btn">
+            Calculate
+          </button>
+        </form>
+        <label class="fs-5 gcd-error-label text-danger"></label>
+      </section>
+      <hr />
       <section
         id="all-divisors-section"
         class="d-flex flex-column gap-2 mt-5 mb-5"
@@ -64,7 +101,7 @@
           method="POST"
           class="d-flex flex-column gap-2 divisors-form"
         >
-          <label for="sum-field" class="fs-5">Enter the number:</label>
+          <label for="num-divisors-field" class="fs-5">Enter the number:</label>
           <input
             id="num-divisors-field"
             name="num-divisors-field"
@@ -145,6 +182,66 @@
         <label class="fs-5 statistics-error-label text-danger"></label>
       </section>
       <hr />
+      <section id="fruit-section" class="d-flex flex-column gap-2 mt-5 mb-5">
+        <h3 class="h4">Favourite fruit</h3>
+        <form
+          action=""
+          method="POST"
+          class="d-flex flex-column gap-2 num-of-digits-form"
+        >
+          <label for="answer-field" class="fs-5"
+            >What's your favourite fruite?</label
+          >
+          <input
+            id="answer-field"
+            name="answer-field"
+            type="text"
+            class="w-50 answer-field form-control fs-5"
+          />
+          <label for="fruit-result-field" class="fs-5">Result:</label>
+          <input
+            id="fruit-result-field"
+            type="text"
+            class="w-50 fruit-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-50 fruit-btn">
+            Get The Result
+          </button>
+        </form>
+        <label class="fs-5 fruit-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section
+        id="check-num-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Check the number</h3>
+        <form
+          action=""
+          method="POST"
+          class="d-flex flex-column gap-2 divisors-form"
+        >
+          <label for="check-num-field" class="fs-5">Enter the number:</label>
+          <input
+            id="check-num-field"
+            name="check-num-field"
+            type="text"
+            class="w-25 check-num-field form-control fs-5"
+          />
+          <label for="check-num-result-field" class="fs-5">Result:</label>
+          <input
+            id="check-num-result-field"
+            type="text"
+            class="w-25 check-num-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 check-num-btn">
+            Check
+          </button>
+        </form>
+        <label class="fs-5 check-num-error-label text-danger"></label>
+      </section>
     </main>
   </body>
 </html>
