@@ -39,7 +39,40 @@
         <button type="button" class="btn btn-primary w-25 calculator-btn">
           Calculate
         </button>
-        <label class="fs-5 sum-error-label text-danger"></label>
+        <label class="fs-5 calculator-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section id="move-section" class="d-flex flex-column gap-2 mt-5 mb-5">
+        <h3 class="h4">Move the digits</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="move-number-field" class="fs-5">Enter the number:</label>
+          <input
+            id="move-number-field"
+            name="move-number-field"
+            type="text"
+            class="w-25 move-number-field form-control fs-5"
+          />
+          <label for="move-digits-field" class="fs-5"
+            >How many digits to move:</label
+          >
+          <input
+            id="move-digits-field"
+            name="move-digits-field"
+            type="text"
+            class="w-25 move-digits-field form-control fs-5"
+          />
+          <label for="move-result-field" class="fs-5">Result:</label>
+          <input
+            id="move-result-field"
+            type="text"
+            class="w-25 move-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 move-btn">
+            Move
+          </button>
+        </form>
+        <label class="fs-5 move-error-label text-danger"></label>
       </section>
       <hr />
     </main>
