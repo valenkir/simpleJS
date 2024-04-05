@@ -43,16 +43,14 @@
           >
           <input
             id="compare-num1-field"
-            name="compare-num1-field"
             type="text"
             class="w-25 compare-num1-field form-control fs-5"
           />
           <label for="compare-num2-field" class="fs-5"
-            >Enter the 1st number:</label
+            >Enter the 2nd number:</label
           >
           <input
             id="compare-num2-field"
-            name="compare-num2-field"
             type="text"
             class="w-25 compare-num2-field form-control fs-5"
           />
@@ -175,6 +173,39 @@
         </form>
         <label class="fs-5 perfect-num-error-label text-danger"></label>
       </section>
+      <hr />
+      <section
+        id="perfect-range-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Perfect numbers from range</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="min-num-field" class="fs-5">Min number of a range:</label>
+          <input
+            id="min-num-field"
+            type="text"
+            class="w-25 min-num-field form-control fs-5"
+          />
+          <label for="max-num-field" class="fs-5">Max number of a range:</label>
+          <input
+            id="max-num-field"
+            type="text"
+            class="w-25 max-num-field form-control fs-5"
+          />
+          <label for="perfect-range-result-field" class="fs-5">Result:</label>
+          <input
+            id="perfect-range-result-field"
+            type="text"
+            class="w-25 perfect-range-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 perfect-range-btn">
+            Compare
+          </button>
+        </form>
+        <label class="fs-5 perfect-range-error-label text-danger"></label>
+      </section>
+      <hr />
     </main>
   </body>
 </html>

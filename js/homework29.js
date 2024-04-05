@@ -174,3 +174,42 @@ perfectNumBtn.addEventListener("click", () => {
     perfectNumErrorLabel.innerHTML = "Enter a valid number";
   }
 });
+
+//FIND PERFECT NUMBERS IN A RANGE
+const getPerfectNumsFromRange = (min, max) => {
+  let perfectNums = [];
+  for (let i = min; i <= max; i++) {
+    if (isNumberPerfect(i)) {
+      perfectNums.push(i);
+    }
+  }
+
+  return perfectNums.length > 0 ? perfectNums : -1;
+};
+
+const minField = document.querySelector(".min-num-field");
+const maxField = document.querySelector(".max-num-field");
+const perfectRangeResultField = document.querySelector(
+  ".perfect-range-result-field"
+);
+const perfectRangeBtn = document.querySelector(".perfect-range-btn");
+const perfectRangeErrorLabel = document.querySelector(
+  ".perfect-range-error-label"
+);
+
+perfectRangeBtn.addEventListener("click", () => {
+  const min = minField.value;
+  const max = maxField.value;
+  if (isValidPositiveNumber(min) && isValidPositiveNumber(max) && +max > +min) {
+    let perfectNumsInRange = getPerfectNumsFromRange(+min, +max);
+
+    perfectRangeResultField.value =
+      perfectNumsInRange !== -1
+        ? perfectNumsInRange
+        : "There are no perfect numbers in this range";
+    perfectRangeErrorLabel.innerHTML = "";
+  } else {
+    perfectRangeResultField.value = "";
+    perfectRangeErrorLabel.innerHTML = "Enter valid numbers";
+  }
+});
