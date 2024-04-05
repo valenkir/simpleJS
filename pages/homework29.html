@@ -20,7 +20,13 @@
     <header class="mb-5">
       <nav class="p-4">
         <ul class="d-flex flex-wrap w-100 gap-5">
-          <li><a href="#sum-section" class="fs-5">Sum</a></li>
+          <li><a href="#compare-section" class="fs-5">Compare Numbers</a></li>
+          <li><a href="#factorial-section" class="fs-5">Factorial</a></li>
+          <li>
+            <a href="#make-number-section" class="fs-5">Number From Digits</a>
+          </li>
+          <li><a href="#area-section" class="fs-5">Rectangle Area</a></li>
+          <li><a href="#perfect-num-field" class="fs-5">Perfect Number</a></li>
           <li>
             <a href="../index.html" class="fs-5">Home</a>
           </li>
@@ -29,30 +35,146 @@
     </header>
     <main class="ps-4 pe-4">
       <h2 class="h2">Homework 29</h2>
-      <section id="sum-section" class="d-flex flex-column gap-2 mt-5 mb-5">
-        <h3 class="h4">Sum numbers</h3>
+      <section id="compare-section" class="d-flex flex-column gap-2 mt-5 mb-5">
+        <h3 class="h4">Compare 2 numbers</h3>
         <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
-          <label for="sum-field" class="fs-5">Enter the number:</label>
+          <label for="compare-num1-field" class="fs-5"
+            >Enter the 1st number:</label
+          >
           <input
-            id="sum-field"
-            name="sum-field"
+            id="compare-num1-field"
+            name="compare-num1-field"
             type="text"
-            class="w-25 sum-field form-control fs-5"
+            class="w-25 compare-num1-field form-control fs-5"
           />
-          <label for="sum-result-field" class="fs-5">Result:</label>
+          <label for="compare-num2-field" class="fs-5"
+            >Enter the 1st number:</label
+          >
           <input
-            id="sum-result-field"
+            id="compare-num2-field"
+            name="compare-num2-field"
             type="text"
-            class="w-25 sum-result-field form-control fs-5"
+            class="w-25 compare-num2-field form-control fs-5"
+          />
+          <label for="compare-result-field" class="fs-5">Result:</label>
+          <input
+            id="compare-result-field"
+            type="text"
+            class="w-25 compare-result-field form-control fs-5"
             disabled
           />
-          <button type="button" class="btn btn-primary w-25 sum-btn">
-            Sum
+          <button type="button" class="btn btn-primary w-25 compare-btn">
+            Compare
           </button>
         </form>
-        <label class="fs-5 sum-error-label text-danger"></label>
+        <label class="fs-5 compare-error-label text-danger"></label>
       </section>
       <hr />
+      <section
+        id="factorial-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Factorial</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="factorial-num-field" class="fs-5"
+            >Enter the number:</label
+          >
+          <input
+            id="factorial-num-field"
+            name="factorial-num-field"
+            type="text"
+            class="w-25 factorial-num-field form-control fs-5"
+          />
+          <label for="factorial-result-field" class="fs-5">Factorial:</label>
+          <input
+            id="factorial-result-field"
+            type="text"
+            class="w-25 factorial-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 calc-factorial-btn">
+            Calculate
+          </button>
+        </form>
+        <label class="fs-5 factorial-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section
+        id="make-number-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Make a number</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="make-number-result-field" class="fs-5">Result:</label>
+          <input
+            id="make-number-result-field"
+            type="text"
+            class="w-25 make-number-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 make-num-btn">
+            Get Digits
+          </button>
+        </form>
+        <label class="fs-5 make-num-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section id="area-section" class="d-flex flex-column gap-2 mt-5 mb-5">
+        <h3 class="h4">Calculate area of a rectangle</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="width-field" class="fs-5">Enter the width:</label>
+          <input
+            id="width-field"
+            type="text"
+            class="w-25 width-field form-control fs-5"
+          />
+          <label for="length-field" class="fs-5">Enter the length:</label>
+          <input
+            id="length-field"
+            type="text"
+            class="w-25 length-field form-control fs-5"
+          />
+          <label for="area-result-field" class="fs-5">Area:</label>
+          <input
+            id="area-result-field"
+            type="text"
+            class="w-25 area-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 area-btn">
+            Calculate
+          </button>
+        </form>
+        <label class="fs-5 area-error-label text-danger"></label>
+      </section>
+      <hr />
+      <section
+        id="perfect-num-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Perfect number</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="perfect-num-field" class="fs-5">Enter the number:</label>
+          <input
+            id="perfect-num-field"
+            type="text"
+            class="w-25 perfect-num-field form-control fs-5"
+          />
+          <label for="perfect-num-result-field" class="fs-5"
+            >Is the number perfect?</label
+          >
+          <input
+            id="perfect-num-result-field"
+            type="text"
+            class="w-25 perfect-num-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 perfect-num-btn">
+            Find out
+          </button>
+        </form>
+        <label class="fs-5 perfect-num-error-label text-danger"></label>
+      </section>
     </main>
   </body>
 </html>
