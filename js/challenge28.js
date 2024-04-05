@@ -1,12 +1,4 @@
-function isValidNumber(num) {
-  return !isNaN(num) && num !== null && num.trim().length > 0;
-}
-
-function isNotEmptyString(promptString) {
-  return (
-    promptString !== null && promptString.length > 0 && promptString.trim()
-  );
-}
+import { isValidNumber, isNotEmptyString } from "./validation.js";
 
 //CALCULATOR
 const calculatorBtn = document.querySelector(".calculator-btn");
@@ -31,12 +23,12 @@ calculatorBtn.addEventListener("click", () => {
   let terminateCalculation = false;
   while (!terminateCalculation) {
     let num1 = prompt("Enter the 1st number");
-    if (!isValidNumber(num1)) {
+    if (num1 === null || !isValidNumber(num1)) {
       calculatorErrorLabel.innerHTML = "Enter a valid number";
       break;
     }
     let num2 = prompt("Enter the 2nd number");
-    if (!isValidNumber(num2)) {
+    if (num2 === null || !isValidNumber(num2)) {
       calculatorErrorLabel.innerHTML = "Enter a valid number";
       break;
     }
@@ -47,24 +39,28 @@ calculatorBtn.addEventListener("click", () => {
     }
     switch (operation) {
       case "+":
+        calculatorErrorLabel.innerHTML = "";
         alert(Number(num1) + Number(num2));
         terminateCalculation = continueCalculation(
           prompt("Should we stop the calculation?", "No")
         );
         break;
       case "-":
+        calculatorErrorLabel.innerHTML = "";
         alert(Number(num1) - Number(num2));
         terminateCalculation = continueCalculation(
           prompt("Should we stop the calculation?", "No")
         );
         break;
       case "*":
+        calculatorErrorLabel.innerHTML = "";
         alert(Number(num1) * Number(num2));
         terminateCalculation = continueCalculation(
           prompt("Should we stop the calculation?", "No")
         );
         break;
       case "/":
+        calculatorErrorLabel.innerHTML = "";
         alert(Number(num1) / Number(num2));
         terminateCalculation = continueCalculation(
           prompt("Should we stop the calculation?", "No")
@@ -85,7 +81,11 @@ moveBtn.addEventListener("click", () => {
   const numberToMove = moveNumberField.value;
   let digitsToMove = moveDigitsField.value;
 
-  if (isNotEmptyString(numberToMove) && isValidNumber(digitsToMove)) {
+  if (
+    isNotEmptyString(numberToMove) &&
+    isValidNumber(digitsToMove) &&
+    isValidNumber(numberToMove)
+  ) {
     digitsToMove = parseInt(digitsToMove);
     if (numberToMove.length >= digitsToMove) {
       moveErrorLabel.innerHTML = "";

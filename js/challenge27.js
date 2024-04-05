@@ -1,16 +1,8 @@
-function isValidNumber(promptNumber) {
-  return (
-    !isNaN(promptNumber) && promptNumber !== null && promptNumber.trim().length
-  );
-}
-
-function isValidPositiveNumber(promptNumber) {
-  return isValidNumber(promptNumber) && Math.sign(promptNumber) > 0;
-}
-
-function isValidString(promptString) {
-  return promptString.length > 0 && promptString.trim();
-}
+import {
+  isValidNumber,
+  isNotEmptyString,
+  isValidPositiveNumber,
+} from "./validation.js";
 
 //for any number of chars in a string (hopefully)
 function findIdenticalChars(str) {
@@ -37,6 +29,7 @@ const digitsField = document.querySelector(".digits-field");
 digitsBtn.addEventListener("click", () => {
   let numberToCheck = prompt("Enter a 3-digit number:");
   if (
+    numberToCheck !== null &&
     isValidNumber(numberToCheck) &&
     isNumberOfDigitsCorrect(3, numberToCheck)
   ) {
@@ -64,6 +57,7 @@ palindromeBtn.addEventListener("click", () => {
   let numberToCheck = prompt("Enter a 5-digit number:");
 
   if (
+    numberToCheck !== null &&
     isValidNumber(numberToCheck) &&
     isNumberOfDigitsCorrect(5, numberToCheck)
   ) {
@@ -155,7 +149,7 @@ const emailSubmitBtn = document.querySelector(".email-submit-btn");
 
 emailSubmitBtn.addEventListener("click", () => {
   const email = emailField.value;
-  if (isValidString(email)) {
+  if (isNotEmptyString(email)) {
     if (email.length > 20 || !email.includes("@")) {
       emailErrorLabel.innerHTML =
         "The email should include @ and the number of characters should be <20";

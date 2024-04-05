@@ -1,14 +1,8 @@
-function isValidNumber(promptNumber) {
-  return !isNaN(promptNumber) && promptNumber !== null;
-}
-
-function isValidAge(promptNumber) {
-  return isValidNumber(promptNumber) && Math.sign(promptNumber) > 0;
-}
-
-function isValidString(promptString) {
-  return promptString && promptString.trim();
-}
+import {
+  isValidNumber,
+  isNotEmptyString,
+  isValidPositiveNumber,
+} from "./validation.js";
 
 //CHILDREN
 const getChildrenInfoBtn = document.querySelector(".get-children-info-btn");
@@ -23,10 +17,12 @@ getChildrenInfoBtn.addEventListener("click", () => {
   const secondChildAge = prompt(`What's their age?`);
 
   if (
-    isValidString(firstChildName) &&
-    isValidString(secondChildAge) &&
-    isValidAge(firstChildAge) &&
-    isValidAge(secondChildAge)
+    isNotEmptyString(firstChildName) &&
+    isNotEmptyString(secondChildName) &&
+    firstChildAge !== null &&
+    secondChildAge !== null &&
+    isValidPositiveNumber(firstChildAge) &&
+    isValidPositiveNumber(secondChildAge)
   ) {
     showChild1InfoField.value = `${firstChildName.trim()}, ${firstChildAge}-year-old`;
     showChild2InfoField.value = `${secondChildName.trim()}, ${secondChildAge}-year-old`;
@@ -53,7 +49,7 @@ const guessColorBtn = document.querySelector(".guess-color-btn");
 guessColorBtn.addEventListener("click", () => {
   let guessedColor = prompt("Enter the color");
 
-  if (isValidString(guessedColor)) {
+  if (isNotEmptyString(guessedColor)) {
     guessedColor = guessedColor.trim().toLowerCase();
     if (flagColors.includes(guessedColor)) {
       colorField.value = "Correct!";
@@ -81,7 +77,7 @@ const oddNumResultField = document.querySelector(".odd-number-input");
 
 checkOddNumBtn.addEventListener("click", () => {
   const promptNumber = prompt("Enter a number");
-  if (isValidNumber(promptNumber)) {
+  if (promptNumber !== null && isValidNumber(promptNumber)) {
     if (Math.abs(parseInt(promptNumber)) % 2 === 1) {
       oddNumResultField.value = "The number is odd!";
     } else {
@@ -99,12 +95,13 @@ const calcResultField = document.querySelector(".calc-result-input");
 getNumbersBtn.addEventListener("click", () => {
   const firstNum = prompt("Enter the 1st number");
   const secondNum = prompt("Enter the 2nd number");
-
-  if (isValidNumber(firstNum) && isValidNumber(secondNum) && secondNum != 0) {
-    const calcResult = (Number(firstNum) / Number(secondNum)).toFixed();
-    calcResultField.value = calcResult;
-  } else {
-    calcResultField.value = "Enter valid numbers";
+  if (firstNum !== null && secondNum !== 0) {
+    if (isValidNumber(firstNum) && isValidNumber(secondNum) && secondNum != 0) {
+      const calcResult = (Number(firstNum) / Number(secondNum)).toFixed();
+      calcResultField.value = calcResult;
+    } else {
+      calcResultField.value = "Enter valid numbers";
+    }
   }
 });
 
@@ -145,7 +142,7 @@ const errorLabel = document.querySelector(".error-label");
 
 getRangeNumberBtn.addEventListener("click", () => {
   const num = prompt("Enter a number");
-  if (isValidNumber(num) && num.trim()) {
+  if (num !== null && isValidNumber(num)) {
     isNumberField.value = typeof Number(num);
     isInRangeField.value = num >= 10 && num <= 50;
     errorLabel.innerHTML = "";

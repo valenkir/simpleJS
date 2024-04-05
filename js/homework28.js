@@ -1,10 +1,4 @@
-function isValidNumber(num) {
-  return !isNaN(num) && num !== null && num.trim().length > 0;
-}
-
-function isEmptyString(promptString) {
-  return promptString.length > 0 && promptString.trim();
-}
+import { isValidNumber, isValidPositiveNumber } from "./validation.js";
 
 //SUM NUMBERS
 const numberField = document.querySelector(".sum-field");
@@ -14,7 +8,7 @@ const sumErrorLabel = document.querySelector(".sum-error-label");
 
 sumBtn.addEventListener("click", () => {
   let numSum = numberField.value;
-  if (isValidNumber(numSum) && numSum > 0) {
+  if (isValidPositiveNumber(numSum)) {
     numSum = Number(numSum.trim());
     let result = 0;
     while (numSum >= 1) {
@@ -39,7 +33,7 @@ function getGCD(greaterNum, smallerNum) {
   if (greaterNum % smallerNum === 0) {
     return smallerNum;
   } else {
-    for (i = Math.floor(smallerNum / 2); i >= 1; i--) {
+    for (let i = Math.floor(smallerNum / 2); i >= 1; i--) {
       if (smallerNum % i === 0 && greaterNum % i === 0) return i;
     }
   }
@@ -49,6 +43,7 @@ gcdBtn.addEventListener("click", () => {
   let firstNum = firstField.value;
   let secondNum = secondField.value;
   let gcd;
+
   if (isValidNumber(firstNum) && isValidNumber(secondNum)) {
     gcdErrorLabel.innerHTML = "";
     firstNum = Number(firstNum);
@@ -78,7 +73,7 @@ const divisorsErrorLabel = document.querySelector(".divisors-error-label");
 divisorsBtn.addEventListener("click", () => {
   let numDivisors = numberDivisorsField.value;
 
-  if (isValidNumber(numDivisors) && numDivisors > 0) {
+  if (isValidPositiveNumber(numDivisors)) {
     numDivisors = Number(numDivisors.trim());
     let divisors = [numDivisors];
 
@@ -109,7 +104,7 @@ calcDigitsBtn.addEventListener("click", () => {
 
   if (isValidNumber(initNumber) && +initNumber % 1 === 0) {
     initNumber = Number(initNumber.trim());
-    counter = 0;
+    let counter = 0;
     do {
       initNumber = Math.trunc(initNumber / 10);
       counter++;
@@ -141,7 +136,7 @@ statBtn.addEventListener("click", () => {
   let promptNumbers = [];
   for (let i = 0; i < 10; i++) {
     getNum = prompt("Enter a number");
-    if (isValidNumber(getNum)) {
+    if (getNum !== null && isValidNumber(getNum)) {
       promptNumbers.push(Number(getNum));
     } else {
       statErrorLabel.innerHTML = "Enter a valid number";
@@ -178,7 +173,7 @@ const fruitErrorLabel = document.querySelector(".fruit-error-label");
 
 fruitBtn.addEventListener("click", () => {
   const fruit = answerField.value;
-  if (isEmptyString(fruit)) {
+  if (fruit.trim().length > 0) {
     fruitErrorLabel.innerHTML = "";
     switch (fruit.toLowerCase()) {
       case "peach":
