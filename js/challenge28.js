@@ -178,9 +178,10 @@ startGameBtn.addEventListener("click", () => {
   let endGame = false;
 
   let answer = prompt(`Is your number ${guess}? Answer with <, > or = signs`);
+  debugger;
   while (!endGame) {
     if (acceptableAnswers.includes(answer)) {
-      if (minNum !== maxNum) {
+      if (minNum !== maxNum && minNum < maxNum) {
         switch (answer) {
           case ">":
             minNum = guess + 1;
