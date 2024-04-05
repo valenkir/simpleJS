@@ -170,10 +170,25 @@ for (let i = 2; i < 10; i++) {
 const startGameBtn = document.querySelector(".start-game-btn");
 const gameErrorLabel = document.querySelector(".game-error-label");
 
+const findDuplicatedGuesses = (prevGuesses) => {
+  debugger;
+  const counts = {};
+  prevGuesses.forEach((value) => {
+    if (!counts[value]) {
+      counts[value] = 1;
+    } else {
+      counts[value]++;
+    }
+  });
+
+  return Object.values(counts).find((elem) => elem > 2) ? true : false;
+};
+
 startGameBtn.addEventListener("click", () => {
   let maxNum = 100;
   let minNum = 0;
   let guess = Math.floor(maxNum / 2);
+  let prevGuess = [];
   const acceptableAnswers = ["<", ">", "="];
   let endGame = false;
 
@@ -181,7 +196,8 @@ startGameBtn.addEventListener("click", () => {
   debugger;
   while (!endGame) {
     if (acceptableAnswers.includes(answer)) {
-      if (minNum !== maxNum && minNum < maxNum) {
+      prevGuess.push(guess);
+      if (minNum !== maxNum && !findDuplicatedGuesses(prevGuess)) {
         switch (answer) {
           case ">":
             minNum = guess + 1;
@@ -198,7 +214,7 @@ startGameBtn.addEventListener("click", () => {
             endGame = true;
         }
       } else {
-        alert(`Your number is either ${minNum} or you've cheated!`);
+        alert(`Your number is either ${guess} or you've cheated!`);
         break;
       }
     } else {
