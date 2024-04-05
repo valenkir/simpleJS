@@ -197,7 +197,7 @@ startGameBtn.addEventListener("click", () => {
   while (!endGame) {
     if (acceptableAnswers.includes(answer)) {
       prevGuess.push(guess);
-      if (minNum !== maxNum && !findDuplicatedGuesses(prevGuess)) {
+      if (!findDuplicatedGuesses(prevGuess)) {
         switch (answer) {
           case ">":
             minNum = guess + 1;
