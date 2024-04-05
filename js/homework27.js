@@ -82,7 +82,7 @@ const oddNumResultField = document.querySelector(".odd-number-input");
 checkOddNumBtn.addEventListener("click", () => {
   const promptNumber = prompt("Enter a number");
   if (isValidNumber(promptNumber)) {
-    if (Math.abs(Number(promptNumber)) % 2 === 1) {
+    if (Math.abs(parseInt(promptNumber)) % 2 === 1) {
       oddNumResultField.value = "The number is odd!";
     } else {
       oddNumResultField.value = "";
