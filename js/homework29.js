@@ -322,24 +322,29 @@ convertToSecBtn.addEventListener("click", () => {
 
 //CONVERT SECONDS TO HH:MM:SS
 const convertSecondsToTime = (timeInSeconds) => {
-  //TODO: fix for 0 case
   const time = {};
   let interValue = timeInSeconds / 3600;
-
-  if (interValue % 1 === 0) {
-    time.hours = interValue;
+  if (parseInt(timeInSeconds) === 0) {
+    time.hours = 0;
+    time.seconds = 0;
+    time.minutes = 0;
     return time;
   } else {
-    time.hours = Math.trunc(interValue);
-    interValue = timeInSeconds - time.hours * 3600;
-    interValue = interValue / 60;
     if (interValue % 1 === 0) {
-      time.minutes = interValue;
+      time.hours = interValue;
       return time;
     } else {
-      time.minutes = Math.trunc(interValue);
-      time.seconds = timeInSeconds - (time.hours * 3600 + time.minutes * 60);
-      return time;
+      time.hours = Math.trunc(interValue);
+      interValue = timeInSeconds - time.hours * 3600;
+      interValue = interValue / 60;
+      if (interValue % 1 === 0) {
+        time.minutes = interValue;
+        return time;
+      } else {
+        time.minutes = Math.trunc(interValue);
+        time.seconds = timeInSeconds - (time.hours * 3600 + time.minutes * 60);
+        return time;
+      }
     }
   }
 };
