@@ -179,6 +179,7 @@ perfectNumBtn.addEventListener("click", () => {
 const getPerfectNumsFromRange = (min, max) => {
   let perfectNums = [];
   for (let i = min; i <= max; i++) {
+    console.log(i);
     if (isNumberPerfect(i)) {
       perfectNums.push(i);
     }
@@ -201,7 +202,7 @@ perfectRangeBtn.addEventListener("click", () => {
   const min = minField.value;
   const max = maxField.value;
   if (isValidPositiveNumber(min) && isValidPositiveNumber(max) && +max > +min) {
-    let perfectNumsInRange = getPerfectNumsFromRange(+min, +max);
+    let perfectNumsInRange = getPerfectNumsFromRange(Number(min), Number(max));
 
     perfectRangeResultField.value =
       perfectNumsInRange !== -1
@@ -211,5 +212,72 @@ perfectRangeBtn.addEventListener("click", () => {
   } else {
     perfectRangeResultField.value = "";
     perfectRangeErrorLabel.innerHTML = "Enter valid numbers";
+  }
+});
+
+//FORMAT TIME
+
+const formatTime = (hours, minutes, seconds) => {
+  if (!seconds) seconds = "00";
+  return `${hours}:${minutes}:${seconds}`;
+};
+
+const areValidHours = (hours) => {
+  return (
+    isValidNumber(hours) &&
+    hours % 1 === 0 &&
+    hours <= 24 &&
+    hours >= 0 &&
+    hours.length === 2
+  );
+};
+
+const areValidMinutes = (mins) => {
+  return (
+    isValidNumber(mins) &&
+    mins % 1 === 0 &&
+    mins <= 60 &&
+    mins >= 0 &&
+    mins.length === 2
+  );
+};
+
+const areValidSeconds = (seconds) => {
+  if (seconds) {
+    return (
+      isValidNumber(seconds) &&
+      seconds % 1 === 0 &&
+      seconds <= 60 &&
+      seconds >= 0 &&
+      seconds.length === 2
+    );
+  } else {
+    return true;
+  }
+};
+
+const hoursField = document.querySelector(".hours-field");
+const minsField = document.querySelector(".minutes-field");
+const secondsField = document.querySelector(".seconds-field");
+const formatResultField = document.querySelector(".format-time-result-field");
+const formatBtn = document.querySelector(".format-time-btn");
+const formatErrorLabel = document.querySelector(".format-time-error-label");
+
+formatBtn.addEventListener("click", () => {
+  const hours = hoursField.value;
+  const minutes = minsField.value;
+  const seconds = secondsField.value;
+
+  if (
+    areValidHours(hours) &&
+    areValidMinutes(minutes) &&
+    areValidSeconds(seconds)
+  ) {
+    formatErrorLabel.innerHTML = "";
+    formatResultField.value = formatTime(hours, minutes, seconds);
+  } else {
+    formatErrorLabel.innerHTML =
+      "Enter valid time; Hours and minutes cannot be empty";
+    formatResultField.value = "";
   }
 });
