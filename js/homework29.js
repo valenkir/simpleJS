@@ -218,28 +218,24 @@ perfectRangeBtn.addEventListener("click", () => {
 //FORMAT TIME
 
 const formatTime = (hours, minutes, seconds) => {
-  if (!seconds) seconds = "00";
   return `${hours}:${minutes}:${seconds}`;
 };
 
+const convertNumbersToTimeFormat = (timeObjProperty) => {
+  timeObjProperty += "";
+  return timeObjProperty.length === 2
+    ? timeObjProperty
+    : timeObjProperty === ""
+    ? "00"
+    : (timeObjProperty = `0${timeObjProperty}`);
+};
+
 const areValidHours = (hours) => {
-  return (
-    isValidNumber(hours) &&
-    hours % 1 === 0 &&
-    hours <= 24 &&
-    hours >= 0 &&
-    hours.length === 2
-  );
+  return isValidNumber(hours) && hours % 1 === 0 && hours <= 23 && hours >= 0;
 };
 
 const areValidMinutes = (mins) => {
-  return (
-    isValidNumber(mins) &&
-    mins % 1 === 0 &&
-    mins <= 60 &&
-    mins >= 0 &&
-    mins.length === 2
-  );
+  return isValidNumber(mins) && mins % 1 === 0 && mins <= 60 && mins >= 0;
 };
 
 const areValidSeconds = (seconds) => {
@@ -248,8 +244,7 @@ const areValidSeconds = (seconds) => {
       isValidNumber(seconds) &&
       seconds % 1 === 0 &&
       seconds <= 60 &&
-      seconds >= 0 &&
-      seconds.length === 2
+      seconds >= 0
     );
   } else {
     return true;
@@ -264,17 +259,26 @@ const formatBtn = document.querySelector(".format-time-btn");
 const formatErrorLabel = document.querySelector(".format-time-error-label");
 
 formatBtn.addEventListener("click", () => {
-  const hours = hoursField.value;
-  const minutes = minsField.value;
-  const seconds = secondsField.value;
+  const time = {
+    hours: hoursField.value,
+    minutes: minsField.value,
+    seconds: secondsField.value,
+  };
 
   if (
-    areValidHours(hours) &&
-    areValidMinutes(minutes) &&
-    areValidSeconds(seconds)
+    areValidHours(time.hours) &&
+    areValidMinutes(time.minutes) &&
+    areValidSeconds(time.seconds)
   ) {
+    time.hours = convertNumbersToTimeFormat(time.hours);
+    time.minutes = convertNumbersToTimeFormat(time.minutes);
+    time.seconds = convertNumbersToTimeFormat(time.seconds);
     formatErrorLabel.innerHTML = "";
-    formatResultField.value = formatTime(hours, minutes, seconds);
+    formatResultField.value = formatTime(
+      time.hours,
+      time.minutes,
+      time.seconds
+    );
   } else {
     formatErrorLabel.innerHTML =
       "Enter valid time; Hours and minutes cannot be empty";
@@ -289,20 +293,80 @@ const convertTimeToSeconds = (hours, minutes, seconds) => {
 const convertToSecBtn = document.querySelector(".convert-to-seconds-btn");
 
 convertToSecBtn.addEventListener("click", () => {
-  const hours = hoursField.value;
-  const minutes = minsField.value;
-  const seconds = secondsField.value;
+  const time = {
+    hours: hoursField.value,
+    minutes: minsField.value,
+    seconds: secondsField.value,
+  };
 
   if (
-    areValidHours(hours) &&
-    areValidMinutes(minutes) &&
-    areValidSeconds(seconds)
+    areValidHours(time.hours) &&
+    areValidMinutes(time.minutes) &&
+    areValidSeconds(time.seconds)
   ) {
+    time.hours = convertNumbersToTimeFormat(time.hours);
+    time.minutes = convertNumbersToTimeFormat(time.minutes);
+    time.seconds = convertNumbersToTimeFormat(time.seconds);
     formatErrorLabel.innerHTML = "";
-    formatResultField.value = convertTimeToSeconds(+hours, +minutes, +seconds);
+    formatResultField.value = convertTimeToSeconds(
+      +time.hours,
+      +time.minutes,
+      +time.seconds
+    );
   } else {
     formatErrorLabel.innerHTML =
       "Enter valid time; Hours and minutes cannot be empty";
     formatResultField.value = "";
+  }
+});
+
+//CONVERT SECONDS TO HH:MM:SS
+const convertSecondsToTime = (timeInSeconds) => {
+  //TODO: fix for 0 case
+  const time = {};
+  let interValue = timeInSeconds / 3600;
+
+  if (interValue % 1 === 0) {
+    time.hours = interValue;
+    return time;
+  } else {
+    time.hours = Math.trunc(interValue);
+    interValue = timeInSeconds - time.hours * 3600;
+    interValue = interValue / 60;
+    if (interValue % 1 === 0) {
+      time.minutes = interValue;
+      return time;
+    } else {
+      time.minutes = Math.trunc(interValue);
+      time.seconds = timeInSeconds - (time.hours * 3600 + time.minutes * 60);
+      return time;
+    }
+  }
+};
+
+const timeInSecondsField = document.querySelector(".time-seconds-field");
+const timeFromSecondsResultField = document.querySelector(".time-result-field");
+const convertFromSecBtn = document.querySelector(".convert-seconds-btn");
+const convertFromSecErrorLabel = document.querySelector(
+  ".convert-seconds-error-label"
+);
+
+convertFromSecBtn.addEventListener("click", () => {
+  const timeInSeconds = timeInSecondsField.value;
+
+  if (isValidNumber(timeInSeconds) && timeInSeconds >= 0) {
+    const convertedTime = convertSecondsToTime(timeInSeconds);
+    convertedTime.hours = convertNumbersToTimeFormat(convertedTime.hours);
+    convertedTime.minutes = convertNumbersToTimeFormat(convertedTime.minutes);
+    convertedTime.seconds = convertNumbersToTimeFormat(convertedTime.seconds);
+    timeFromSecondsResultField.value = formatTime(
+      convertedTime.hours,
+      convertedTime.minutes,
+      convertedTime.seconds
+    );
+    formatErrorLabel.innerHTML = "";
+  } else {
+    convertFromSecErrorLabel.innerHTML = "The field cannot be empty";
+    timeFromSecondsResultField.value = "";
   }
 });

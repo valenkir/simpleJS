@@ -260,6 +260,38 @@
         <label class="fs-5 format-time-error-label text-danger"></label>
       </section>
       <hr />
+      <section
+        id="seconds-to-time-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Convert seconds to time</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="time-seconds-field" class="fs-5"
+            >Enter the time in seconds:</label
+          >
+          <input
+            id="time-seconds-field"
+            name="time-seconds-field"
+            type="text"
+            class="w-25 time-seconds-field form-control fs-5"
+          />
+          <label for="time-result-field" class="fs-5">Time:</label>
+          <input
+            id="time-result-field"
+            type="text"
+            class="w-25 time-result-field form-control fs-5"
+            disabled
+          />
+          <button
+            type="button"
+            class="btn btn-primary w-25 convert-seconds-btn"
+          >
+            Convert
+          </button>
+        </form>
+        <label class="fs-5 convert-seconds-error-label text-danger"></label>
+      </section>
+      <hr />
     </main>
   </body>
 </html>
