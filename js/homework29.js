@@ -281,3 +281,28 @@ formatBtn.addEventListener("click", () => {
     formatResultField.value = "";
   }
 });
+
+//CONVERT TIME TO SECONDS
+const convertTimeToSeconds = (hours, minutes, seconds) => {
+  return hours * 3600 + minutes * 60 + seconds;
+};
+const convertToSecBtn = document.querySelector(".convert-to-seconds-btn");
+
+convertToSecBtn.addEventListener("click", () => {
+  const hours = hoursField.value;
+  const minutes = minsField.value;
+  const seconds = secondsField.value;
+
+  if (
+    areValidHours(hours) &&
+    areValidMinutes(minutes) &&
+    areValidSeconds(seconds)
+  ) {
+    formatErrorLabel.innerHTML = "";
+    formatResultField.value = convertTimeToSeconds(+hours, +minutes, +seconds);
+  } else {
+    formatErrorLabel.innerHTML =
+      "Enter valid time; Hours and minutes cannot be empty";
+    formatResultField.value = "";
+  }
+});
