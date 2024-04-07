@@ -1,4 +1,8 @@
-import { isValidNumber, isValidPositiveNumber } from "./validation.js";
+import {
+  isValidNumber,
+  isValidPositiveNumber,
+  isNotEmptyString,
+} from "./validation.js";
 
 //COMPARE NUMBERS
 const compareNums = (num1, num2) => {
@@ -223,7 +227,7 @@ const formatTime = (hours, minutes, seconds) => {
 
 const convertNumbersToTimeFormat = (timeObjProperty) => {
   timeObjProperty += "";
-  return timeObjProperty.length === 2
+  return timeObjProperty.length >= 2
     ? timeObjProperty
     : timeObjProperty === ""
     ? "00"
@@ -231,7 +235,7 @@ const convertNumbersToTimeFormat = (timeObjProperty) => {
 };
 
 const areValidHours = (hours) => {
-  return isValidNumber(hours) && hours % 1 === 0 && hours <= 23 && hours >= 0;
+  return isValidNumber(hours) && hours % 1 === 0 && hours >= 0;
 };
 
 const areValidMinutes = (mins) => {
@@ -322,12 +326,13 @@ convertToSecBtn.addEventListener("click", () => {
 
 //CONVERT SECONDS TO HH:MM:SS
 const convertSecondsToTime = (timeInSeconds) => {
-  const time = {};
+  const time = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  };
   let interValue = timeInSeconds / 3600;
   if (parseInt(timeInSeconds) === 0) {
-    time.hours = 0;
-    time.seconds = 0;
-    time.minutes = 0;
     return time;
   } else {
     if (interValue % 1 === 0) {
@@ -361,17 +366,76 @@ convertFromSecBtn.addEventListener("click", () => {
 
   if (isValidNumber(timeInSeconds) && timeInSeconds >= 0) {
     const convertedTime = convertSecondsToTime(timeInSeconds);
-    convertedTime.hours = convertNumbersToTimeFormat(convertedTime.hours);
-    convertedTime.minutes = convertNumbersToTimeFormat(convertedTime.minutes);
-    convertedTime.seconds = convertNumbersToTimeFormat(convertedTime.seconds);
     timeFromSecondsResultField.value = formatTime(
-      convertedTime.hours,
-      convertedTime.minutes,
-      convertedTime.seconds
+      convertNumbersToTimeFormat(convertedTime.hours),
+      convertNumbersToTimeFormat(convertedTime.minutes),
+      convertNumbersToTimeFormat(convertedTime.seconds)
     );
-    formatErrorLabel.innerHTML = "";
+    convertFromSecErrorLabel.innerHTML = "";
   } else {
-    convertFromSecErrorLabel.innerHTML = "The field cannot be empty";
+    convertFromSecErrorLabel.innerHTML = "Enter valid time in seconds";
     timeFromSecondsResultField.value = "";
+  }
+});
+
+//CALCULATE DIFFERENCE BETWEEN 2 DATES
+const calculateDateDifference = (date1, date2) => {
+  try {
+    if (!isNaN(Date.parse(date1)) && !isNaN(Date.parse(date2))) {
+      const firstDateInSeconds = Date.parse(date1) / 1000;
+      const secondDateInSeconds = Date.parse(date2) / 1000;
+      return firstDateInSeconds > secondDateInSeconds
+        ? firstDateInSeconds - secondDateInSeconds
+        : secondDateInSeconds - firstDateInSeconds;
+    } else {
+      throw "-1";
+    }
+  } catch (error) {
+    return error;
+  }
+};
+
+const convertToDateTimeStringFormat = (inputDate) => {
+  const dateTime = inputDate.trim().split(" ");
+  if (dateTime.length === 2) {
+    const date = dateTime[0].replaceAll("/", "-");
+    const time = dateTime[1];
+    return `${date}T${time}`;
+  } else if (dateTime.length === 1) {
+    return `${dateTime[0].replaceAll("/", "-")}T00:00:00`;
+  } else {
+    return -1;
+  }
+};
+
+const firstDateField = document.querySelector(".date1-field");
+const secondDateField = document.querySelector(".date2-field");
+const diffDateResultField = document.querySelector(".diff-dates-result-field");
+const calcDiffDateBtn = document.querySelector(".diff-dates-btn");
+const diffDateErrorLabel = document.querySelector(".diff-dates-error-label");
+
+calcDiffDateBtn.addEventListener("click", () => {
+  const firstDateInput = firstDateField.value;
+  const secondDateInput = secondDateField.value;
+  if (isNotEmptyString(firstDateInput)) {
+    const formattedFirstDate = convertToDateTimeStringFormat(firstDateInput);
+    const formattedSecondDate = convertToDateTimeStringFormat(secondDateInput);
+    const differenceInSeconds = calculateDateDifference(
+      formattedFirstDate,
+      formattedSecondDate
+    );
+    if (differenceInSeconds !== "-1") {
+      const convertedTime = convertSecondsToTime(differenceInSeconds);
+      diffDateResultField.value = formatTime(
+        convertNumbersToTimeFormat(convertedTime.hours),
+        convertNumbersToTimeFormat(convertedTime.minutes),
+        convertNumbersToTimeFormat(convertedTime.seconds)
+      );
+      diffDateErrorLabel.innerHTML = "";
+    } else {
+      diffDateResultField.value = "";
+      diffDateErrorLabel.innerHTML =
+        "The date format should be 'YYYY/MM/DD' or 'YYYY/MM/DD HH:MM:SS'";
+    }
   }
 });

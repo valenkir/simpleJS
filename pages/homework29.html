@@ -295,6 +295,37 @@
         <label class="fs-5 convert-seconds-error-label text-danger"></label>
       </section>
       <hr />
+      <section
+        id="diff-between-dates-section"
+        class="d-flex flex-column gap-2 mt-5 mb-5"
+      >
+        <h3 class="h4">Difference between the dates</h3>
+        <form action="" method="POST" class="d-flex flex-column gap-2 sum-form">
+          <label for="date1-field" class="fs-5">Enter the 1st date:</label>
+          <input
+            id="date1-field"
+            type="text"
+            class="w-25 date1-field form-control fs-5"
+          />
+          <label for="date2-field" class="fs-5">Enter the 2nd date:</label>
+          <input
+            id="date2-field"
+            type="text"
+            class="w-25 date2-field form-control fs-5"
+          />
+          <label for="diff-dates-result-field" class="fs-5">Result:</label>
+          <input
+            id="diff-dates-result-field"
+            type="text"
+            class="w-25 diff-dates-result-field form-control fs-5"
+            disabled
+          />
+          <button type="button" class="btn btn-primary w-25 diff-dates-btn">
+            Calculate
+          </button>
+        </form>
+        <label class="fs-5 diff-dates-error-label text-danger"></label>
+      </section>
     </main>
   </body>
 </html>
