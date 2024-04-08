@@ -1,4 +1,24 @@
-import { isValidPositiveNumber } from "./validation.js";
+import {
+  isValidPositiveNumber,
+  isNotEmptyString,
+  isValidNumber,
+} from "../validation.js";
+
+function getGCD(greaterNum, smallerNum) {
+  greaterNum = Math.abs(greaterNum);
+  smallerNum = Math.abs(smallerNum);
+  if (greaterNum % smallerNum === 0) {
+    return smallerNum;
+  } else {
+    for (let i = Math.floor(smallerNum / 2); i >= 1; i--) {
+      if (smallerNum % i === 0 && greaterNum % i === 0) return i;
+    }
+  }
+}
+
+function getLCM(num1, num2, gcd) {
+  return (num1 * num2) / gcd;
+}
 
 //CAR OBJECT
 const car = {
@@ -20,7 +40,6 @@ const car = {
       const timeInSeconds = timeWithoutRestInSeconds + restHoursInSeconds;
       time.hours = Math.trunc(timeInSeconds / 3600);
       time.minutes = Math.round((timeInSeconds - time.hours * 3600) / 60);
-      console.log(time.hours, time.minutes);
       return time;
     } else {
       time.hours = Math.trunc(timeWithoutRestInHours);
