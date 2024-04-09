@@ -174,7 +174,7 @@ perfectNumBtn.addEventListener("click", () => {
   if (isValidNumber(num) && +num > 0) {
     perfectNumResultField.value = isNumberPerfect(+num) ? "It is!" : "Nope";
   } else {
-    perfectNumResultField = "";
+    perfectNumResultField.value = "";
     perfectNumErrorLabel.innerHTML = "Enter a valid number";
   }
 });
