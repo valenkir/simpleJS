@@ -1,8 +1,4 @@
-import {
-  isValidPositiveNumber,
-  isNotEmptyString,
-  isValidNumber,
-} from "../validation.js";
+import { isValidPositiveNumber } from "../validation.js";
 
 function getGCD(greaterNum, smallerNum) {
   greaterNum = Math.abs(greaterNum);
