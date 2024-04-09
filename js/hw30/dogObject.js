@@ -48,7 +48,6 @@ const showDogInfo = (dogs) => {
 };
 
 const defineOldestDog = (dogs) => {
-  debugger;
   let oldestDog = { ...dogs[0] };
 
   dogs.forEach((dog, index) => {
