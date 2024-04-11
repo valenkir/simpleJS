@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS homework31 - Groceries List</title>
+    <title>JS homework31 - Shop Receipt</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,7 +13,7 @@
     <link href="../../css/reset.css" rel="stylesheet" />
     <link href="../../css/utilities.css" rel="stylesheet" />
     <link href="../../css/main.css" rel="stylesheet" />
-    <script defer src="../../js/hw31/groceriesList.js" type="module"></script>
+    <script defer src="../../js/hw31/shopReceipt.js" type="module"></script>
   </head>
   <body>
     <header class="mb-5">
@@ -29,36 +29,26 @@
       </nav>
     </header>
     <main class="p-4">
-      <h1 class="h3 mb-5">Groceries List (tasks 1 &amp; 2)</h1>
+      <h1 class="h3 mb-5">Shop Receipt (task 3)</h1>
       <form class="d-flex flex-column gap-2 w-25">
-        <label for="groceries-list" class="form-label fs-5"
-          >Groceries List</label
-        >
-        <label class="form-label fs-5 text-danger"
-          >No input validation this time.</label
-        >
+        <label for="shop-receipt" class="form-label fs-5">Shop Receipt</label>
         <textarea
-          id="groceries-list"
-          class="form-control fs-5 groceries-list"
+          id="shop-receipt"
+          class="form-control fs-5 shop-receipt"
           rows="7"
           disabled
         ></textarea>
+        <label for="info-field" class="form-label fs-5">Info</label>
+        <input id="info-field" class="form-control fs-5 info-field" disabled />
         <div class="d-flex flex-wrap gap-2">
           <button type="button" class="btn btn-primary get-list">
             Get the List
           </button>
-          <button type="button" class="btn btn-primary add-product">
-            Add a Product
+          <button type="button" class="btn btn-primary expensive-btn">
+            Most Expensive Product
           </button>
-          <button type="button" class="btn btn-primary buy-product">
-            Buy a Product
-          </button>
-          <button type="button" class="btn btn-primary change-amount">
-            Change the Amount
-          </button>
-          <button type="button" class="btn btn-primary remove-product">
-            Remove a Product
-          </button>
+          <button type="button" class="btn btn-primary total-btn">Total</button>
+          <button type="button" class="btn btn-primary avg-btn">Average</button>
         </div>
       </form>
     </main>
