@@ -46,7 +46,6 @@ const insertListItem = (list, itemText, className, position = "end") => {
 
 const removeListItem = (list, itemText, rowStyle) => {
   const items = list.children;
-  console.dir(items);
   const removementLabel = `${itemText} has been removed`;
   for (let item of items) {
     if (item.innerText.toLowerCase() === itemText.toLowerCase()) {
