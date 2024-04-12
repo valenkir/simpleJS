@@ -19,7 +19,7 @@ const isProductInList = (productName, list) => {
   debugger;
   let isInList = false;
   list.forEach((product) => {
-    if (product.productName === productName) {
+    if (product.productName.toLowerCase() === productName.toLowerCase()) {
       isInList = true;
     }
   });
@@ -29,7 +29,7 @@ const isProductInList = (productName, list) => {
 const getProductIndexByName = (productName, list) => {
   let productIndex = -1;
   list.forEach((product, index) => {
-    if (product.productName === productName) {
+    if (product.productName.toLowerCase() === productName.toLowerCase()) {
       productIndex = index;
     }
   });

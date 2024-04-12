@@ -10,6 +10,10 @@ nav {
   width: 10%;
 }
 
+.w-40 {
+  width: 40%;
+}
+
 .fit-content {
   width: -moz-fit-content;
   width: fit-content;
