@@ -19,10 +19,14 @@ const styleListBgOddRows = (list, style = "bg-primary-subtle") => {
   debugger;
   const items = list.children;
   for (let i = 0; i < items.length; i++) {
-    if (i % 2 !== 0 && !items[i].classList.contains("bg-dark-subtle")) {
+    console.log(typeof items[i].innerText);
+    if (i % 2 !== 0 && !items[i].innerText.includes("removed")) {
       items[i].classList.add(style);
-    } else {
+    } else if (!items[i].innerText.includes("removed")) {
       items[i].classList.remove(style);
+    } else {
+      items[i].classList.add("bg-dark-subtle");
+      items[i].classList.add("text-dark-emphasis");
     }
   }
 };
@@ -43,18 +47,9 @@ const insertListItem = (list, newItem, container, position = "end") => {
   addUserList(list, container);
 };
 
-const removeListItem = (list, itemText, rowStyle) => {
-  const items = list.children;
-  const removementLabel = `${itemText} has been removed`;
-  for (let item of items) {
-    if (item.innerText.toLowerCase() === itemText.toLowerCase()) {
-      item.innerText = removementLabel;
-      item.classList.remove(rowStyle);
-      item.classList.add("bg-dark-subtle");
-      item.classList.add("text-dark-emphasis");
-    }
-  }
-  styleListBgOddRows(list);
+const removeListItem = (list, itemToRemove, container) => {
+  list[list.indexOf(itemToRemove)] = `${itemToRemove} has been removed`;
+  addUserList(list, container);
 };
 
 //LIST DATA
@@ -62,10 +57,13 @@ const users = ["Dave", "John", "Ivan", "Sam", "Mel", "Diana"];
 
 //CREATE A LIST AND STYLE IT ON PAGE LOAD
 const listContainer = document.querySelector(".container");
-const rowStyle = "bg-primary-subtle";
 addUserList(users, listContainer);
 let userListElement = document.querySelector(".user-list");
 styleListBgOddRows(userListElement);
+
+//ADD USERS TO THE DROPDOWN
+const userDropDown = document.querySelector(".remove-user-field");
+users.forEach((option) => userDropDown.add(new Option(option, option)));
 
 //ADD USER
 const positionDropDown = document.querySelector(".item-position");
@@ -78,19 +76,31 @@ addUserBtn.addEventListener("click", () => {
   const newUserName = addUserField.value;
   if (isNotEmptyString(newUserName)) {
     insertListItem(users, newUserName, listContainer, positionOption);
+    userListElement = document.querySelector(".user-list");
+    styleListBgOddRows(userListElement);
+    userDropDown.innerHTML = "";
+    users.forEach((option) => {
+      if (!option.includes("removed")) {
+        userDropDown.add(new Option(option, option));
+      }
+    });
   }
-  userListElement = document.querySelector(".user-list");
-  console.log(users);
-  styleListBgOddRows(userListElement);
 });
 
 //REMOVE USER
-const removeUserField = document.querySelector(".remove-user-field");
 const removeUserBtn = document.querySelector(".remove-user-btn");
 
 removeUserBtn.addEventListener("click", () => {
-  const userName = removeUserField.value;
+  const userName = userDropDown.options[userDropDown.selectedIndex].text;
   if (isNotEmptyString(userName)) {
-    removeListItem(userListElement, userName, rowStyle);
+    removeListItem(users, userName, listContainer);
+    userListElement = document.querySelector(".user-list");
+    styleListBgOddRows(userListElement);
+    userDropDown.innerHTML = "";
+    users.forEach((option) => {
+      if (!option.includes("removed")) {
+        userDropDown.add(new Option(option, option));
+      }
+    });
   }
 });
