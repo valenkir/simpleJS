@@ -1,12 +1,13 @@
 import { isNotEmptyString } from "../validation.js";
 
-const addUserList = (users, container, className) => {
+const addUserList = (users, container) => {
+  container.innerHTML = "";
   const userList = document.createElement("ul");
   userList.classList.add("list-group", "fs-5", "user-list");
 
   users.forEach((user) => {
     const listItem = document.createElement("li");
-    listItem.classList.add("list-group-item", className);
+    listItem.classList.add("list-group-item", "item");
     listItem.innerText = user;
     userList.append(listItem);
   });
@@ -15,6 +16,7 @@ const addUserList = (users, container, className) => {
 };
 
 const styleListBgOddRows = (list, style = "bg-primary-subtle") => {
+  debugger;
   const items = list.children;
   for (let i = 0; i < items.length; i++) {
     if (i % 2 !== 0 && !items[i].classList.contains("bg-dark-subtle")) {
@@ -25,23 +27,20 @@ const styleListBgOddRows = (list, style = "bg-primary-subtle") => {
   }
 };
 
-const insertListItem = (list, itemText, className, position = "end") => {
-  const newListItem = document.createElement("li");
-  newListItem.classList.add("list-group-item", className);
-  newListItem.innerText = itemText;
+const insertListItem = (list, newItem, container, position = "end") => {
   switch (position.toLowerCase()) {
     case "start":
-      list.prepend(newListItem);
+      list.unshift(newItem);
       break;
     case "middle":
-      const index = Math.floor(list.children.length / 2);
-      list.children[index].after(newListItem);
+      const newItemIndex = Math.floor(list.length / 2);
+      list.splice(newItemIndex, 0, newItem);
       break;
     case "end":
-      list.append(newListItem);
+      list.push(newItem);
       break;
   }
-  styleListBgOddRows(list);
+  addUserList(list, container);
 };
 
 const removeListItem = (list, itemText, rowStyle) => {
@@ -63,10 +62,9 @@ const users = ["Dave", "John", "Ivan", "Sam", "Mel", "Diana"];
 
 //CREATE A LIST AND STYLE IT ON PAGE LOAD
 const listContainer = document.querySelector(".container");
-const listItemClassName = "item";
 const rowStyle = "bg-primary-subtle";
-addUserList(users, listContainer, listItemClassName);
-const userListElement = document.querySelector(".user-list");
+addUserList(users, listContainer);
+let userListElement = document.querySelector(".user-list");
 styleListBgOddRows(userListElement);
 
 //ADD USER
@@ -79,8 +77,11 @@ addUserBtn.addEventListener("click", () => {
     positionDropDown.options[positionDropDown.selectedIndex].value;
   const newUserName = addUserField.value;
   if (isNotEmptyString(newUserName)) {
-    insertListItem(userListElement, newUserName, "item", positionOption);
+    insertListItem(users, newUserName, listContainer, positionOption);
   }
+  userListElement = document.querySelector(".user-list");
+  console.log(users);
+  styleListBgOddRows(userListElement);
 });
 
 //REMOVE USER
