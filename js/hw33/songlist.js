@@ -96,14 +96,25 @@ const createSongItem = (songName, artistName, runtime, songList) => {
   //SHOW RUNTIME TOOLTIP AND DELETE SONG
   song.addEventListener("click", (event) => {
     const songElemClass = event.target.className;
-    if (songElemClass.includes("runtime-icon")) {
-      const currentRuntimeContainer =
-        event.target.parentElement.nextElementSibling;
-      currentRuntimeContainer.classList.toggle("invisible");
-    }
     if (songElemClass.includes("delete-icon")) {
       const currentSongItem = event.target.closest(".song-item");
       currentSongItem.remove();
+    }
+  });
+  song.addEventListener("mouseover", (event) => {
+    const songElemClass = event.target.className;
+    if (songElemClass.includes("runtime-icon")) {
+      const currentRuntimeContainer =
+        event.target.parentElement.nextElementSibling;
+      currentRuntimeContainer.classList.remove("invisible");
+    }
+  });
+  song.addEventListener("mouseout", (event) => {
+    const songElemClass = event.target.className;
+    if (songElemClass.includes("runtime-icon")) {
+      const currentRuntimeContainer =
+        event.target.parentElement.nextElementSibling;
+      currentRuntimeContainer.classList.add("invisible");
     }
   });
 };
