@@ -19,4 +19,21 @@ a {
 
 .numerator {
   border-bottom: 2px solid black;
+}
+
+.runtime-icon {
+  color: #0d6efd;
+  cursor: pointer;
+}
+.runtime-icon-info-container {
+  position: absolute;
+  top: -35px;
+  right: 25px;
+  background-color: #cfe2ff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.delete-icon {
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
