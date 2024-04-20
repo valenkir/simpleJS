@@ -25,6 +25,8 @@ a {
   border-bottom: 2px solid black;
 }
 
+//LISTS
+//SONG LIST
 .runtime-icon {
   color: #0d6efd;
   cursor: pointer;
@@ -39,5 +41,15 @@ a {
 }
 
 .delete-icon {
+  cursor: pointer;
+}
+
+//TODO LIST
+.todo-field {
+  border: none;
+}
+
+.task-icon {
+  color: rgb(79, 150, 255);
   cursor: pointer;
 }
