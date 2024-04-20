@@ -12,6 +12,28 @@ const taskContainerClasses = [
   "p-2",
 ];
 const taskInputClasses = ["fs-5", "todo-field", "w-100"];
+const editIconClasses = [
+  "fa-solid",
+  "fa-square-pen",
+  "task-icon",
+  "edit-icon",
+  "fa-xl",
+];
+const saveIconClasses = [
+  "fa-solid",
+  "fa-file-export",
+  "task-icon",
+  "save-icon",
+  "fa-lg",
+  "d-none",
+];
+
+const deleteIconClasses = [
+  "fa-regular",
+  "fa-trash-can",
+  "delete-icon",
+  "fa-lg",
+];
 
 $(() => {
   const addTask = () => {
@@ -24,12 +46,12 @@ $(() => {
     const taskCheckbox = $(
       "<input type='checkbox' class='form-check-input' />"
     );
-    const editTaskIcon =
-      "<i class='fa-solid fa-square-pen task-icon edit-icon fa-xl'></i>";
-    const saveTaskIcon =
-      "<i class='fa-solid fa-file-export task-icon save-icon fa-lg d-none'></i>";
-    const deleteTaskIcon =
-      "<i class='fa-regular fa-trash-can delete-icon fa-lg'></i>";
+    const editTaskIcon = $("<i></i>");
+    editTaskIcon.addClass(editIconClasses.join(" "));
+    const saveTaskIcon = $("<i></i>");
+    saveTaskIcon.addClass(saveIconClasses.join(" "));
+    const deleteTaskIcon = $("<i></i>");
+    deleteTaskIcon.addClass(deleteIconClasses.join(" "));
     taskContainer.append(
       taskCheckbox,
       taskInput,
