@@ -1,6 +1,7 @@
 import { isNotEmptyString } from "../validation.js";
 
 let newTaskText = "";
+const enterCode = "";
 const taskContainerClasses = [
   "d-flex",
   "gap-3",
@@ -54,7 +55,6 @@ $(() => {
         $(".edit-icon").show();
       }
       if ($(event.target).hasClass("form-check-input")) {
-        console.log("we are here");
         if ($(event.target).is(":checked")) {
           taskInput.addClass("text-decoration-line-through");
           taskInput.prop("disabled", true);
@@ -69,10 +69,17 @@ $(() => {
   };
 
   $(".new-task-container").on("click", (event) => {
-    if ($(event.target).hasClass("task-icon")) {
-      if (isNotEmptyString(newTaskText)) {
-        addTask();
-      }
+    if (
+      $(event.target).hasClass("task-icon") &&
+      isNotEmptyString(newTaskText)
+    ) {
+      addTask();
+    }
+  });
+
+  $(".new-task-container").on("keydown", (event) => {
+    if (event.which === 13 && isNotEmptyString(newTaskText)) {
+      addTask();
     }
   });
 
