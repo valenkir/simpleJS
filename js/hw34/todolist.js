@@ -1,7 +1,6 @@
 import { isNotEmptyString } from "../validation.js";
 
 let newTaskText = "";
-const enterCode = "";
 const taskContainerClasses = [
   "d-flex",
   "gap-3",
@@ -46,23 +45,23 @@ $(() => {
       }
       if ($(event.target).hasClass("edit-icon")) {
         taskInput.prop("disabled", false);
-        $(".edit-icon").hide();
-        $(".save-icon").removeClass("d-none");
+        $(event.target).hide();
+        $(event.target).siblings(".save-icon").removeClass("d-none");
       }
       if ($(event.target).hasClass("save-icon")) {
         taskInput.prop("disabled", true);
-        $(".save-icon").addClass("d-none");
-        $(".edit-icon").show();
+        $(event.target).addClass("d-none");
+        $(event.target).siblings(".edit-icon").show();
       }
       if ($(event.target).hasClass("form-check-input")) {
         if ($(event.target).is(":checked")) {
           taskInput.addClass("text-decoration-line-through");
           taskInput.prop("disabled", true);
-          $(".save-icon").addClass("d-none");
-          $(".edit-icon").hide();
+          $(event.target).siblings(".save-icon").addClass("d-none");
+          $(event.target).siblings(".edit-icon").hide();
         } else {
           taskInput.removeClass("text-decoration-line-through");
-          $(".edit-icon").show();
+          $(event.target).siblings(".edit-icon").show();
         }
       }
     });
