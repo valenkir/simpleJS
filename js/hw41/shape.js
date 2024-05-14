@@ -75,12 +75,10 @@ class Circle extends Shape {
   }
 }
 
-const rect1 = new Rectangle({ height: 120, width: 300 });
-//invalid rectangle
-//const rect2 = new Rectangular({ height: 0, width: 20 });
+const rect = new Rectangle({ height: 120, width: 300 });
 const circle = new Circle({ radius: 108.5 });
 
 $(() => {
-  rect1.renderRectangle(".shape");
+  rect.renderRectangle(".shape");
   circle.renderCircle(".shape");
 });
