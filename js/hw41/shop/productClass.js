@@ -1,4 +1,4 @@
-//price, type, name, isAvailable, description
+//price, type, name, isAvailable, description, imgURL, snippet
 
 export class Product {
   constructor(productInfo) {

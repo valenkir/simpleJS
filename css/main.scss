@@ -57,3 +57,14 @@ a {
 .move-rectangle-main {
   height: 70vh;
 }
+
+//CARDS
+.card {
+  max-width: 340px;
+  width: 100%;
+}
+.card-img {
+  object-fit: contain;
+  max-width: 340px;
+  max-height: 250px;
+}
