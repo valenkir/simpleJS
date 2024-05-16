@@ -6,7 +6,7 @@ const polarBearObj = {
   species: "U. maritimus",
   diet: ["meat"],
   habitat: "Arctic",
-  sound: "growl",
+  sound: "GROWL",
   states: {
     isHibernating: true,
     isAsleep: false,
