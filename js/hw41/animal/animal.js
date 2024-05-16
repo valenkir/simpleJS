@@ -22,7 +22,6 @@ export class Mammal extends Animal {
   //state - object: {isHibernating: true, isAsleep: false}
   constructor(name, species, diet, habitat, sound, states) {
     super(name, species, diet, habitat, sound);
-    this.vaccinationInfo = vaccinationInfo;
     this.states = states;
   }
 
