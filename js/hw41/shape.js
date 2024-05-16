@@ -1,23 +1,30 @@
 class Shape {
-  constructor(measurements) {
-    for (let key in measurements) {
-      this[key] = measurements[key];
+  constructor(measurements, validationValues) {
+    if (this.#areValidArgs(measurements, validationValues)) {
+      for (let key in measurements) {
+        this[key] = measurements[key];
+      }
+    } else {
+      throw new Error("Invalid measurements!");
     }
     this.PI = 3.14;
+  }
+
+  #areValidArgs(measurements, validationValues) {
+    let areInvalidArgsPresent = validationValues.filter(
+      (value) => !Object.keys(measurements).includes(value)
+    );
+
+    return (
+      areInvalidArgsPresent.length === 0 &&
+      !Object.values(measurements).includes(0)
+    );
   }
 }
 
 class Rectangle extends Shape {
   constructor(measurements) {
-    if (
-      Object.keys(measurements).includes("height") &&
-      Object.keys(measurements).includes("width") &&
-      !Object.values(measurements).includes(0)
-    ) {
-      super(measurements);
-    } else {
-      throw new Error("Invalid measurements!");
-    }
+    super(measurements, ["height", "width"]);
   }
 
   getArea() {
@@ -43,14 +50,7 @@ class Rectangle extends Shape {
 
 class Circle extends Shape {
   constructor(measurements) {
-    if (
-      Object.keys(measurements).includes("radius") &&
-      !Object.values(measurements).includes(0)
-    ) {
-      super(measurements);
-    } else {
-      throw new Error("Invalid measurements!");
-    }
+    super(measurements, ["radius"]);
   }
 
   getCircumference() {

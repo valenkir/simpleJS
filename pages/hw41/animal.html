@@ -14,7 +14,9 @@
     <link href="../../css/utilities.css" rel="stylesheet" />
     <link href="../../css/main.css" rel="stylesheet" />
     <script src="../../js/jquery.js"></script>
-    <script src="../../js/hw41/shape.js"></script>
+    <script src="../../js/hw41/animal/animal.js" type="module"></script>
+    <script src="../../js/hw41/animal/animalProfile.js" type="module"></script>
+    <script src="../../js/hw41/animal/main.js" type="module"></script>
   </head>
   <body>
     <main>
@@ -31,8 +33,15 @@
         </nav>
       </header>
       <h1 class="fs-2 mt-5 ms-5 mb-3">Classes-2</h1>
-      <section id="shape" class="d-flex flex-column gap-4 shape p-3">
-        <h2 class="fs-4 ms-5 fw-bold">Shape</h2>
+      <section id="animal" class="d-flex flex-column gap-4 animal p-3">
+        <h2 class="fs-4 ms-5 fw-bold">Animals</h2>
+        <div class="d-flex flex-wrap gap-3 animal-cards p-4"></div>
+        <div
+          class="alert alert-primary d-none sound-message position-fixed bottom-0 end-0 ms-3 w-25"
+          role="alert"
+        >
+          Test
+        </div>
       </section>
     </main>
   </body>
